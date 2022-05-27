@@ -12,7 +12,7 @@ This application was designed for educational purposes.
   - flutter pub get
   - flutter doctor -v
 
-# launch app
+# Launch App
   - flutter get packages
   - flutter run --no-sound-null-safety -d web-server --web-hostname localhost --web-port 3000 : RUNING WEB
   - flutter build apk --no-sound-null-safety --no-tree-shake-icons : Generate APK
