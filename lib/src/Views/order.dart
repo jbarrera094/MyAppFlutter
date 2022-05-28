@@ -147,6 +147,12 @@ class _StateMyOrder extends AuthState<PageMyOrder>
                       datasets['Supabase future builder'] =
                           doc.data as List<dynamic>? ?? <dynamic>[];
                       const index = 0;
+                      double temp = 0;
+                      datasets['Supabase future builder']
+                          .forEach((dynamic product) {
+                        temp = temp + product['value'];
+                      });
+                      globals.totalOrder = temp;
 
                       return Builder(
                         builder: (context) {
@@ -670,7 +676,7 @@ class _StateMyOrder extends AuthState<PageMyOrder>
                           textAlign: TextAlign.left,
                           textDirection: TextDirection.ltr,
                           maxLines: 1),
-                      Text('''${total}''',
+                      Text('''${globals.totalOrder}''',
                           style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                               color: const Color(0xFF000000),

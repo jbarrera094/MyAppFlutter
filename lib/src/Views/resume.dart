@@ -32,7 +32,7 @@ class PageResume extends StatefulWidget {
 class _StateResume extends AuthState<PageResume>
     with SingleTickerProviderStateMixin {
   String email = globals.email;
-  double total = 0;
+  double total = globals.totalOrder;
 
   var datasets = <String, dynamic>{};
 

@@ -32,6 +32,7 @@ class _StateReserve extends AuthState<PageReserve>
     with SingleTickerProviderStateMixin {
   // Date Selected
   String date = '';
+  String time = '';
 
   var datasets = <String, dynamic>{};
   // Email del usuario que ingreso
@@ -277,6 +278,111 @@ class _StateReserve extends AuthState<PageReserve>
                           ),
                         ],
                       ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.zero,
+                            padding: EdgeInsets.zero,
+                            width: 200,
+                            decoration: const BoxDecoration(
+                              color: Color(0xFFFFFFFF),
+                              border: Border(
+                                left: BorderSide(
+                                    width: 0,
+                                    style: BorderStyle.none,
+                                    color: Color(0xFFFFFFFF)),
+                                top: BorderSide(
+                                    width: 0,
+                                    style: BorderStyle.none,
+                                    color: Color(0xFFFFFFFF)),
+                                right: BorderSide(
+                                    width: 0,
+                                    style: BorderStyle.none,
+                                    color: Color(0xFFFFFFFF)),
+                                bottom: BorderSide(
+                                    width: 0,
+                                    style: BorderStyle.none,
+                                    color: Color(0xFFFFFFFF)),
+                              ),
+                            ),
+                            child: Container(
+                              margin: const EdgeInsets.only(
+                                left: 16,
+                                top: 8,
+                                right: 16,
+                                bottom: 8,
+                              ),
+                              width: double.maxFinite,
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFFFFFFF),
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(8),
+                                  topRight: Radius.circular(8),
+                                  bottomRight: Radius.circular(8),
+                                  bottomLeft: Radius.circular(8),
+                                ),
+                                border: null,
+                              ),
+                              child: TextField(
+                                onChanged: (String value) async {
+                                  setState(() {
+                                    time = value;
+                                  });
+                                },
+                                onSubmitted: (String value) async {},
+                                decoration: const InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(8),
+                                      topRight: Radius.circular(8),
+                                      bottomRight: Radius.circular(8),
+                                      bottomLeft: Radius.circular(8),
+                                    ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(8),
+                                      topRight: Radius.circular(8),
+                                      bottomRight: Radius.circular(8),
+                                      bottomLeft: Radius.circular(8),
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(8),
+                                      topRight: Radius.circular(8),
+                                      bottomRight: Radius.circular(8),
+                                      bottomLeft: Radius.circular(8),
+                                    ),
+                                  ),
+                                  hintText: r'''HH:MM''',
+                                  contentPadding: const EdgeInsets.only(
+                                    left: 16,
+                                  ),
+                                ),
+                                style: GoogleFonts.poppins(
+                                  textStyle: TextStyle(
+                                    color: Color.fromARGB(255, 0, 0, 0),
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 16,
+                                    fontStyle: FontStyle.normal,
+                                    decoration: TextDecoration.none,
+                                  ),
+                                ),
+                                textAlign: TextAlign.left,
+                                textDirection: TextDirection.ltr,
+                                maxLines: 1,
+                                minLines: 1,
+                                maxLength: null,
+                                obscureText: false,
+                                showCursor: true,
+                                autocorrect: false,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                       Container(
                         margin: EdgeInsets.zero,
                         padding: const EdgeInsets.only(
@@ -436,6 +542,7 @@ class _StateReserve extends AuthState<PageReserve>
                                       '''id_user''': '''${email}''',
                                       '''date''': '''${date}''',
                                       '''reserved''': "true",
+                                      '''time''': '''${time}''',
                                     },
                                     returning: ReturningOption.minimal,
                                   ).execute();
@@ -453,7 +560,7 @@ class _StateReserve extends AuthState<PageReserve>
                                       await Navigator.push<void>(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => PageResume(),
+                                          builder: (context) => PageListStore(),
                                         ),
                                       );
                                     } else {
