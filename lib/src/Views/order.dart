@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'dart:convert';
+import 'package:cosifi/src/Views/listProduct.dart';
 import 'package:cosifi/src/Views/menu.dart';
 import 'package:cosifi/src/Views/reserve.dart';
 import 'package:flutter/material.dart';
@@ -29,13 +30,12 @@ class PageMyOrder extends StatefulWidget {
 
 class _StateMyOrder extends AuthState<PageMyOrder>
     with SingleTickerProviderStateMixin {
-  // calculate total acount
-
-  double total = 0;
-
   var datasets = <String, dynamic>{};
   // Email del usuario que ingreso
   String email = globals.email;
+
+  // calculate total acount
+  double total = 0;
 
   @override
   void initState() {
@@ -147,13 +147,6 @@ class _StateMyOrder extends AuthState<PageMyOrder>
                       datasets['Supabase future builder'] =
                           doc.data as List<dynamic>? ?? <dynamic>[];
                       const index = 0;
-                      total = 0;
-                      // Calculate the total proce for this order
-                      datasets['Supabase future builder']
-                          .forEach((dynamic product) {
-                        total = total + product['value'];
-                      });
-                      print(total);
 
                       return Builder(
                         builder: (context) {
@@ -773,39 +766,25 @@ class _StateMyOrder extends AuthState<PageMyOrder>
                       ),
                     ),
                     GestureDetector(
-                      onTap: () async {},
-                      onLongPress: () async {},
-                      child: Container(
-                        width: 100,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFFFCE30),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(8),
-                            topRight: Radius.circular(8),
-                            bottomRight: Radius.circular(8),
-                            bottomLeft: Radius.circular(8),
-                          ),
-                          border: null,
-                        ),
-                        child: Text(
-                          'Pedir',
-                          style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                              color: const Color(0xFFFFFFFF),
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16,
-                              fontStyle: FontStyle.normal,
-                              decoration: TextDecoration.none,
+                      onTap: () async {
+                        final response = await Supabase.instance.client
+                            .from("orders")
+                            .delete()
+                            .eq("id_user", email)
+                            .eq('activated', true)
+                            .execute();
+                        if (response != null) {
+                          print("Orden Eliminada");
+                          await Navigator.push<void>(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PageListProducts(),
                             ),
-                          ),
-                          textAlign: TextAlign.center,
-                          textDirection: TextDirection.ltr,
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () async {},
+                          );
+                        } else {
+                          print("No se pudo eliminar la orden");
+                        }
+                      },
                       onLongPress: () async {},
                       child: Container(
                         width: 100,

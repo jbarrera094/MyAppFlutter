@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'dart:convert';
 import 'package:cosifi/src/Views/listStores.dart';
 import 'package:cosifi/src/Views/menu.dart';
+import 'package:cosifi/src/Views/resume.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:supabase/supabase.dart';
@@ -359,7 +360,7 @@ class _StateReserve extends AuthState<PageReserve>
                                       await Navigator.push<void>(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => PageListStore(),
+                                          builder: (context) => PageResume(),
                                         ),
                                       );
                                     } else {
@@ -452,7 +453,7 @@ class _StateReserve extends AuthState<PageReserve>
                                       await Navigator.push<void>(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => PageListStore(),
+                                          builder: (context) => PageResume(),
                                         ),
                                       );
                                     } else {

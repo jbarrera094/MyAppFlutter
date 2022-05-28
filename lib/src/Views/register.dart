@@ -92,8 +92,7 @@ class _State extends AuthState<PageRegister>
                     ),
                   ),
                   child: Image.asset(
-                    '''logo_small.png''',
-                    width: double.maxFinite,
+                    'assets/logo_small.png',
                     fit: BoxFit.fitWidth,
                   ),
                 ),
@@ -306,12 +305,35 @@ class _State extends AuthState<PageRegister>
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
+                Container(
+                  margin: const EdgeInsets.only(
                     top: 15,
                   ),
+                  padding: EdgeInsets.zero,
+                  width: double.maxFinite,
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFFFFFFF),
+                    border: Border(
+                      left: BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
+                          color: Color(0xFF000000)),
+                      top: BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
+                          color: Color(0xFF000000)),
+                      right: BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
+                          color: Color(0xFF000000)),
+                      bottom: BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
+                          color: Color(0xFF000000)),
+                    ),
+                  ),
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(r'''ya tienes cuenta?''',
                           style: GoogleFonts.poppins(
@@ -334,11 +356,12 @@ class _State extends AuthState<PageRegister>
                             ),
                           );
                         },
+                        onLongPress: () async {},
                         child: Text(r'''Ingresa''',
                             style: GoogleFonts.poppins(
                               textStyle: TextStyle(
                                 color: const Color(0xFFFF0000),
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w600,
                                 fontSize: 16,
                                 fontStyle: FontStyle.normal,
                                 decoration: TextDecoration.none,

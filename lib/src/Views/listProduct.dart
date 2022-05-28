@@ -30,10 +30,10 @@ class PageListProducts extends StatefulWidget {
 
 class _StateListProducts extends AuthState<PageListProducts>
     with SingleTickerProviderStateMixin {
-  // Contador para los productos seleccionados
-  int countSelected = 0;
   // Nombre del producto que se desea buscar
   String search = '%';
+  // Contador para los productos seleccionados
+  int countSelected = 0;
 
   var datasets = <String, dynamic>{};
   // Id del restaurante que se desea ver el menu
@@ -481,7 +481,12 @@ class _StateListProducts extends AuthState<PageListProducts>
                                             children: [
                                               GestureDetector(
                                                 onTap: () async {
-                                                  countSelected++;
+                                                  if (countSelected != null) {
+                                                    setState(() {
+                                                      countSelected =
+                                                          countSelected + 1;
+                                                    });
+                                                  }
                                                   final response =
                                                       await Supabase
                                                           .instance.client
@@ -793,7 +798,7 @@ class _StateListProducts extends AuthState<PageListProducts>
                                       color: Color(0xFF000000)),
                                 ),
                               ),
-                              child: Text('''${countSelected}''',
+                              child: Text('$countSelected',
                                   style: GoogleFonts.poppins(
                                     textStyle: TextStyle(
                                       color: const Color(0xFF000000),

@@ -95,8 +95,8 @@ class _StateLogin extends AuthState<Pagelogin>
                           color: Color(0xFF000000)),
                     ),
                   ),
-                  child: Image.network(
-                    r'''https://vlpqmnlctxuuxvjhamhx.supabase.co/storage/v1/object/public/public/Entrega1/assets/logo_small.png''',
+                  child: Image.asset(
+                    'assets/logo_small.png',
                     fit: BoxFit.fitWidth,
                   ),
                 ),
